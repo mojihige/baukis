@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
 
   layout :set_layout
 
+  class Forbidden < ActionController::ActionControllerError; end
+  class IpAddressRejected < ActionController::ActionControllerError; end
+
   rescue_from Exception, with: :rescue500;
+  rescue_from Forbidden, with: :rescue403;
+  rescue_from IpAddressRejected, with: :rescue403;
 
   private
   def set_layout
@@ -20,4 +25,10 @@ class ApplicationController < ActionController::Base
     @exception = e
     render 'errors/internal_server_error', status: 500
   end
+
+  def rescue403(e)
+    @exception = e
+    render 'errors/forbidden', status: 403
+  end
+
 end
