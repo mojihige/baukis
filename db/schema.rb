@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113042918) do
+ActiveRecord::Schema.define(version: 20180114060213) do
 
   create_table "administrators", force: true do |t|
     t.string   "email"
     t.string   "email_for_index"
     t.string   "hashed_password"
-    t.boolean  "suspend"
+    t.boolean  "suspended"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
