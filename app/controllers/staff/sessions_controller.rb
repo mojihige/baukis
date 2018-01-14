@@ -15,13 +15,16 @@ class Staff::SessionsController < Staff::Base
     end
     if Staff::Authenticator.new(staff_member).authenticate(@form.password)
       session[:staff_member_id] = staff_member.id
+      flash.notice = 'ログインしました。'
       redirect_to :staff_root
     else
+      flash.now.alert = 'メールアドレスまたはパスワードが正しくありません。'
       render action: 'new'
     end
   end
 
   def destroy
+    flash.notice = 'ログアウトしました。'
     session.delete(:staff_member_id)
     redirect_to :staff_root
   end
