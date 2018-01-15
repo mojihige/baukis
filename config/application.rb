@@ -26,6 +26,8 @@ module Baukis
       g.test_framework :rspec
       g.controller_specs false
       g.view_specs false
+
+      config.action_controller.permit_all_parameters = true
     end
   end
 end
