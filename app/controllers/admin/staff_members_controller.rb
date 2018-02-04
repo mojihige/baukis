@@ -1,4 +1,6 @@
 class Admin::StaffMembersController < Admin::Base
+  before_action :authorize
+
   def index
     @staff_members = StaffMember.order(:family_name_kana, :given_name_kana)
   end
@@ -36,7 +38,7 @@ class Admin::StaffMembersController < Admin::Base
       render action: 'edit'
     end
   end
-
+1
   def destroy
     staff_member = StaffMember.find(params[:id])
     staff_member.destroy!
